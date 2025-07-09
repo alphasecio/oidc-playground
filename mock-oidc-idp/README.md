@@ -1,6 +1,6 @@
 # 🪪 Mock OpenID Connect (OIDC) Identity Provider
 
-A lightweight OpenD Connect (OIDC) Identity Provider (IdP) that issues signed ID tokens using a configurable RSA private key. Useful for simulating federated identity scenarios, such as testing [Workload Identity Federation (WIF)](https://cloud.google.com/iam/docs/workload-identity-federation) in Google Cloud without relying on a full-fledged OIDC provider.
+A lightweight OpenD Connect (OIDC) Identity Provider (IdP) that issues signed ID tokens using a configurable RSA private key. Useful for simulating federated identity scenarios, such as testing [Workload Identity Federation (WIF)](https://cloud.google.com/iam/docs/workload-identity-federation) in Google Cloud without relying on a full-fledged OIDC provider. Read [this](https://alphasec.io/secure-federated-access-to-google-cloud-building-a-mock-oidc-identity-provider/) blog post for more information.
 
 
 ### ✨ Features
@@ -34,4 +34,4 @@ A lightweight OpenD Connect (OIDC) Identity Provider (IdP) that issues signed ID
 
 
 ### 🔒 Security Considerations
-Important: This is a mock identity provider and not intended for production use. It uses static keys and minimal request validation for simplicity. Use only in trusted test environments.
+Important: This is a mock identity provider and not intended for production use. It uses static keys and no request validation for simplicity. Use only in trusted test environments.
