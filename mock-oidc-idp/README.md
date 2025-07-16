@@ -28,7 +28,7 @@ A lightweight OpenD Connect (OIDC) Identity Provider (IdP) that issues signed ID
 |---------------------------------------------|---------------------------------------|
 | `/`                                         | Health check                          |
 | `/.well-known/openid-configuration`         | OIDC discovery document               |
-| `/jwks.json`                                | JWKS public key set                   |
+| `/.well-known/jwks.json`                    | JWKS public key set                   |
 | `/generate-token`                           | Returns a signed OIDC ID token        |
 | `/authorize`                                | Stub endpoint (501 Not Implemented)   |
 
