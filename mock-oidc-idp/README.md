@@ -7,30 +7,31 @@ A lightweight OpenD Connect (OIDC) Identity Provider (IdP) that issues signed ID
 
 - Serves [OIDC discovery metadata](https://openid.net/specs/openid-connect-discovery-1_0.html)
 - Provides a JWKS endpoint for token verification
-- Issues signed ID tokens via `/generate-token`
-- Customizable subject (`sub`), email, and roles via query params or JSON payload
+- Issues signed ID and access tokens via `/token`
+- Customizable subject `sub` and `email` via query params or JSON payload
 - Minimal dependencies and deployable anywhere, including [Cloud Run](https://cloud.google.com/run?hl=en), [Railway](https://railway.app/?referralCode=alphasec), or [DigitalOcean](https://m.do.co/c/5552e11c260f).
 
 
 ### 🔧 Environment Variables
 
-| Variable          | Description                               |
-|-------------------|-------------------------------------------|
-| `PRIVATE_KEY_PEM` | RSA private key (PEM format, single-line) |
-| `ISSUER_URL`      | Base URL of this IdP (e.g. `https://...`) |
-| `AUDIENCE`        | Audience claim (`aud`) for tokens         |
-| `KEY_ID`          | `kid` value in JWT and JWKS headers       |
+| Variable          | Description                                                                                      |
+|-------------------|--------------------------------------------------------------------------------------------------|
+| `PRIVATE_KEY_PEM` | The RSA private key in PEM format, used to sign tokens                                           |
+| `ISSUER_URL`      | The OIDC issuer URL (must match what clients expect in `iss`)                                    |
+| `CLIENT_ID`       | The audience (`aud`) claim of ID token, indicates which app is requesting authentication         |
+| `AUDIENCE`        | The audience (`aud`) claim of access token, tells the API (resource server) who the token is for |
+| `KEY_ID`          | The key ID (`kid`) used in JWT headers and JWKS metadata                                         |
 
 
 ### 🧪 Endpoints
 
-| Path                                        | Description                           |
-|---------------------------------------------|---------------------------------------|
-| `/`                                         | Health check                          |
-| `/.well-known/openid-configuration`         | OIDC discovery document               |
-| `/.well-known/jwks.json`                    | JWKS public key set                   |
-| `/generate-token`                           | Returns a signed OIDC ID token        |
-| `/authorize`                                | Stub endpoint (501 Not Implemented)   |
+| Path                                        | Description                              |
+|---------------------------------------------|------------------------------------------|
+| `/`                                         | Health check                             |
+| `/.well-known/openid-configuration`         | Returns the OIDC discovery document      |
+| `/.well-known/jwks.json`                    | Returns the JWKS public key set          |
+| `/token`                                    | Returns signed ID and access tokens      |
+| `/authorize`                                | Stub endpoint (501 Not Implemented)      |
 
 
 ### 🔒 Security Considerations
