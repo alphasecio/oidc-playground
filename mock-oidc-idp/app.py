@@ -78,6 +78,8 @@ def generate_token():
     email = req_data.get('email')
 
     now = int(time.time())
+    email_verified = True
+    
     id_payload = {
         "iss": ISSUER_URL,
         "sub": subject,
@@ -85,7 +87,8 @@ def generate_token():
         "iat": now,
         "exp": now + 3600,  # Token valid for 1 hour
         "auth_time": int(time.time()),
-        "jti": os.urandom(16).hex()
+        "jti": os.urandom(16).hex(),
+        "email_verified": email_verified
     }
     if email:
         id_payload["email"] = email
@@ -97,8 +100,11 @@ def generate_token():
         "iat": now,
         "exp": now + 3600,  # Token valid for 1 hour
         "auth_time": int(time.time()),
-        "jti": os.urandom(16).hex()
+        "jti": os.urandom(16).hex(),
+        "email_verified": email_verified
     }
+    if email:
+        access_payload["email"] = email
 
     headers = {
         "kid": KEY_ID,
