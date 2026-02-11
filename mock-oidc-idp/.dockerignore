@@ -1,0 +1,34 @@
+# Git
+.git
+.gitignore
+
+# Python Cache & Bytecode
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Local Environment Variables & Secrets
+.env
+.env.local
+.env.*
+
+# Docker artifacts (if you build inside the same folder)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
