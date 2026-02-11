@@ -1,14 +1,20 @@
-# Use the official lightweight Python image.
 FROM python:3.12-slim
 
-# Allow statements and log messages to immediately appear in the logs
-ENV PYTHONUNBUFFERED True
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    STREAMLIT_SERVER_HEADLESS=true
 
-# Copy local code to the container image
 WORKDIR /app
+
+RUN adduser --system --no-create-home appuser
+
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
+RUN chown -R appuser /app
+USER appuser
+
 ENV PORT=8501
-CMD streamlit run ./app.py --server.port=${PORT} --server.address=0.0.0.0
+
+CMD ["sh", "-c", "streamlit run app.py --server.port=${PORT} --server.address=0.0.0.0"]
